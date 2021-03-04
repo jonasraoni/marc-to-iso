@@ -1,0 +1,24 @@
+{
+    "name": "jonasraoni/marc-to-iso",
+    "type": "library",
+    "description": "PHP mappings from MARC codes/countries to the ISO 3166-1 alpha-2 format and vice-versa.",
+    "keywords": ["marc", "iso3166", "mapping", "country"],
+    "homepage": "http://github.com/jonasraoni/marc-to-iso",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jonas Raoni Soares da Silva",
+            "email": "github@raoni.org",
+            "homepage": "http://raoni.org/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JonasRaoni\\MarcToIso\\": "src/"
+        }
+    }
+}
