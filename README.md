@@ -27,15 +27,15 @@ echo 'US = ' . IsoToMarcCode::get('US');
 
 ## Data Generation
 
-To regenerate the classes, just call the [generate.php](data/generate.php) script (which contains the class template, manual mappings, etc.) and it will overwrite the existing classes.
+To regenerate the classes, ensure the submodules are updated, then call the [generate.php](data/generate.php) script (contains the class template, manual mappings, etc.) and it will overwrite the existing classes.
+
+The process is simple, a [generic list of countries and their respective MARC codes](https://github.com/datasets/country-codes) is matched against the complete [list of MARC codes](data/marc-codes.csv), and the remaining items, which didn't match, are manually mapped.
 
 ## Data Source
 
-A [generic list of countries and their respective MARC codes](data/country-codes.csv) is matched against the complete [list of MARC codes](data/marc-codes.csv). The remaining items which didn't match are then manually mapped.
+- The generic list of countries was retrieved from this link: https://datahub.io/core/country-codes (the .csv is linked to this repository as a submodule).
 
-- The list of MARC countries/codes was retrieved from this link: https://www.loc.gov/marc/countries/countries_code.html
-
-The script below was used to extract a .csv out of the link (it should be executed in a Chromium DevTools console panel), when executed it will copy the data as a CSV to your clipboard.
+- The list of MARC countries/codes was manually retrieved from this link: https://www.loc.gov/marc/countries/countries_code.html. The script below was used to extract a .csv out of the link (it should be executed in a Chromium DevTools console panel), when executed it will copy the data as a CSV to your clipboard.
 
 *The deprecated MARC codes were intentionally removed, since some of them might refer to countries that don't exist anymore, and thus not part of the ISO standard.*
 
@@ -49,5 +49,3 @@ for(const tr of [...$$('table:nth-of-type(1) tbody tr')].slice(1)) {
 }
 copy(rows.join('\n'));
 ```
-
-- The file [country-codes.csv](data/country-codes.csv) was imported from a [DataHub dataset](https://datahub.io/core/country-codes), I could download it directly using the `generator` script, but due to the ephemerality of links, I've decided to proceed with a hard copy.

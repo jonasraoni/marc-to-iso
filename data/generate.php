@@ -1,11 +1,12 @@
 <?php
-$file = new SplFileObject(__DIR__ . '/country-codes.csv');
+$file = new SplFileObject(__DIR__ . '/country-codes/data/country-codes.csv');
 try {
     $header = $file->fgetcsv();
     $marcColumn = array_search('MARC', $header);
     $isoColumn = array_search('ISO3166-1-Alpha-2', $header);
     $byMarcCode = [];
-    while ([$marcColumn => $marc, $isoColumn => $iso] = $file->fgetcsv()) {
+    while (count($data = $file->fgetcsv()) > 1) {
+        [$marcColumn => $marc, $isoColumn => $iso] = $data;
         foreach (explode(',', $marc) as $marc) {
             $byMarcCode[mb_strtoupper($marc)] = mb_strtoupper($iso);
         }
@@ -167,7 +168,7 @@ class %s
 
     public static function get(?string $input): ?string
     {
-        return self::MAPPINGS[mb_strtoupper($input)] ?? null;
+        return self::MAPPINGS[mb_strtoupper($input ?? '')] ?? null;
     }
 }
 ';

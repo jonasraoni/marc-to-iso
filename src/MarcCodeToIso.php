@@ -340,6 +340,6 @@ class MarcCodeToIso
 
     public static function get(?string $input): ?string
     {
-        return self::MAPPINGS[mb_strtoupper($input)] ?? null;
+        return self::MAPPINGS[mb_strtoupper($input ?? '')] ?? null;
     }
 }
